@@ -2,18 +2,18 @@
 # Contents
 
 1. Scala native:
-  1. What is it ?
-  2. [Why would you use it ?](#why-would-you-use-scala-native-?)
+  1.1. What is it ?
+  1.2. [Why would you use it ?](#why-would-you-use-scala-native-)
       a. C Interoperability
       b. Scalapy ???
-  3. How does it work ? 
-  4. Leaving the world of the jvm
+  1.3. How does it work ? 
+  1.4. Leaving the world of the jvm
       a. Native code
 
 2. Compare
-    1. Rust
-    2. Kotlin
-    3. Golang
+    2.1. Rust
+    2.2. Kotlin
+    2.3. Golang
 
 # Why would you use scala native ?
 
