@@ -1,21 +1,24 @@
 
 # Contents
 
-1. Scala native:
-  1.1. What is it ?
-  1.2. [Why would you use it ?](#why-would-you-use-scala-native-)
-      a. C Interoperability
-      b. Scalapy ???
-  1.3. How does it work ? 
-  1.4. Leaving the world of the jvm
-      a. Native code
+[Scala native](#scala-native)
+  [What is it ?](#what-is-it-)
+  [Why would you use it ?](#why-would-you-use-scala-native-)
+      [C Interoperability](#c-Interoperability)
+      Scalapy ???
+  [How does it work ?](#how-does-it-work-)
+  Leaving the world of the jvm
+      Native code
 
-2. Compare
-    2.1. Rust
-    2.2. Kotlin
-    2.3. Golang
+Compare
+    Rust
+    Kotlin
+    Golang
 
-# Why would you use scala native ?
+# Scala native
+
+## What is it ?
+## Why would you use scala native ?
 
 Advantages of system programming:
 
@@ -36,9 +39,13 @@ Disadvantages:
 - Many libraries are not supported
 - Using C libraries (need of shared libraries / loss of type safety / more complex build)
 
-# How does it work ?
+### C Interoperability 
 
-Compiles to native with llvm ():
+### C++ / Objective-C / Swift Interoperability
+
+## How does it work ?
+
+Compiles to native with llvm:
 
     - LLVM: The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. Despite its name, LLVM has little to do with traditional virtual machines. The name "LLVM" itself is not an acronym; it is the full name of the project. 
         - Optimizer + Code generation support for many CPUs () + LLVM IR
@@ -49,14 +56,11 @@ Since it doesn't run on top of the JVM, it cannot use some of the libraries that
 
 http://www.scala-native.org/en/v0.3.9-docs/lib/javalib.html
 
+# Compare
 
-# C Interoperability 
+## kotlin
 
-# C++ / Objective-C / Swift Interoperability
-
-# kotlin
-
-# vs rust
+## vs rust
 
 Differences
 
@@ -68,7 +72,7 @@ Similarities
 - Favour functional programming
 - Powerful type system (see differences)
 
-# vs golang
+## vs golang
 
 Differences
 
