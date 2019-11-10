@@ -1,18 +1,19 @@
 
 # Contents
 
-- Scala native:
-    - What is it ?
-    - Why would you use it ?
-        - C Interoperability
-    - How does it work ? 
-    - Leaving the world of the jvm
-        - Native code
+1. Scala native:
+  1. What is it ?
+  2. [Why would you use it ?](#why-would-you-use-scala-native-?)
+      a. C Interoperability
+      b. Scalapy ???
+  3. How does it work ? 
+  4. Leaving the world of the jvm
+      a. Native code
 
-- Compare
-    - Rust
-    - Kotlin
-    - Golang
+2. Compare
+    1. Rust
+    2. Kotlin
+    3. Golang
 
 # Why would you use scala native ?
 
@@ -27,7 +28,26 @@ Advantages of scala:
 
 - Functional programming
 - Reuse of scala libraries (need to be published for native)
+    - Make a list of existing libraries with support for scala native
 - Use of Scala tooling (sbt, intellij)
+
+Disadvantages:
+
+- Many libraries are not supported
+- Using C libraries (need of shared libraries / loss of type safety / more complex build)
+
+# How does it work ?
+
+Compiles to native with llvm ():
+
+    - LLVM: The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. Despite its name, LLVM has little to do with traditional virtual machines. The name "LLVM" itself is not an acronym; it is the full name of the project. 
+        - Optimizer + Code generation support for many CPUs () + LLVM IR
+        - Debugger
+        - Implementation of libc
+
+Since it doesn't run on top of the JVM, it cannot use some of the libraries that come with it. Scala native provides it's own implementation of a subset of the JDK core libraries:
+
+http://www.scala-native.org/en/v0.3.9-docs/lib/javalib.html
 
 
 # C Interoperability 
@@ -53,4 +73,5 @@ Similarities
 Differences
 
 - Super simple type system and language design overall (no generics, weird error handling)
+
 
