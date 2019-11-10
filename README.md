@@ -1,19 +1,19 @@
 
 # Contents
 
-[Scala native](#scala-native)
-  [What is it ?](#what-is-it-)
-  [Why would you use it ?](#why-would-you-use-scala-native-)
-      [C Interoperability](#c-Interoperability)
-      Scalapy ???
-  [How does it work ?](#how-does-it-work-)
-  Leaving the world of the jvm
+- [Scala native](#scala-native)
+  - [What is it ?](#what-is-it-)
+  - [Why would you use it ?](#why-would-you-use-scala-native-)
+      - [C Interoperability](#c-Interoperability)
+      - Scalapy ???
+  - [How does it work ?](#how-does-it-work-)
+  - Leaving the world of the jvm
       Native code
 
-Compare
-    Rust
-    Kotlin
-    Golang
+- Compare
+    - Rust
+    - Kotlin
+    - Golang
 
 # Scala native
 
