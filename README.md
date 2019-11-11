@@ -67,12 +67,14 @@ Advantages of scala:
 
 - Functional programming
 - Reuse of scala libraries (need to be published for native)
+    - [Scaladex - Native](https://index.scala-lang.org/search?q=*&targetTypes=Native)
     - [awesome-scala-native](https://github.com/tindzk/awesome-scala-native)
 - Use of Scala tooling (sbt, intellij)
 
 Disadvantages:
 
 - Number of contributors (mostly a one-man project)
+- Lack of documentation
 - Can't use Java libraries.
 - Can't use Scala libraries unless built with NIR.
 - Using C libraries
@@ -86,7 +88,7 @@ See [hello-world](hello-world) example.
 
 ### C Interoperability 
 
-### C++ / Objective-C / Swift Interoperability
+See [c-lib-interop](c-lib-interop) example.
 
 # Compare
 
