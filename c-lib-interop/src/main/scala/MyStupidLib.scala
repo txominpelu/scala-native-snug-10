@@ -1,8 +1,8 @@
 import scala.scalanative._
-import scala.scalanative.unsafe._
+import scala.scalanative.native._
 
 @extern
 object MyStupidLib {
-  def vprintf(format: CString, args: CVarArgList): CInt = extern
+  def printf(format: CString, args: CVararg*): CInt = extern
 }
 
