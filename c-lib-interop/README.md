@@ -23,13 +23,13 @@ the lib prefix. E.g if you want to link to the nice ncurses library that you
 can usually find in */usr/local/lib/libncurses.a* then you can link it with:
 
 
-    ```scala
-    @extern
-    @link("ncurses")
-    object MyNCursesWrapper {
-        //...
-    }
-    ```
+```scala
+@extern
+@link("ncurses")
+object MyNCursesWrapper {
+    //...
+}
+```
 
 
 ## Non standard path
@@ -38,12 +38,12 @@ If you want to use a path that is not standard you would need to add your path
 to *build.sb* **nativeLinkingOptions** just like you would add it to link to a
 library when compiling C or C++ code with gcc / clang.
 
-    ```scala
-    nativeLinkingOptions := Seq(
-        "-L/usr/local/lib",
-        "-L/usr/local/Cellar/ncurses/6.1/lib/"
-    )
-    ```
+```scala
+nativeLinkingOptions := Seq(
+    "-L/usr/local/lib",
+    "-L/usr/local/Cellar/ncurses/6.1/lib/"
+)
+```
 
 You can use this trick to link to your custom C code. You just need to write
 your code, build your own library and point *nativeLinkingOptions* to where your
