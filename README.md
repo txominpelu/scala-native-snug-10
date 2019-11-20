@@ -5,7 +5,11 @@
     - [What is it ?](#what-is-it-)
     - [How does it work ?](#how-does-it-work-)
         - [Compilation Process](#compilation-process)
+            - [Compilation Differences with the JVM](#compilation-differences-with-the-jvm)
+            - [Sharing libraries](#sharing-libraries)
         - [Runtime](#Runtime)
+            - [Memory allocation Differences with the JVM](#memory-allocation-differences-with-the-jvm)
+            - [Memory allocation Scala Native alternatives](#memory-allocation-scala-native-alternatives)
     - [Why would you use it ?](#why-would-you-use-scala-native-)
 		- [Scala native vs Other System programming languages](#scala-native-vs-other-system-programming-languages)
 	- [Examples](#examples)
@@ -50,11 +54,48 @@ Nir code is then compiled into [LLVM assembly language](http://llvm.org/docs/Lan
 then processed by LLVM's native compiler to generate native code in the proper architecture 
 (e.g i386, ARM, ...).
 
+**Note:**
 **Note:** A high level overview can be found at 
 [scala-native:/docs/contrib/compiler.rst](https://github.com/scala-native/scala-native/blob/master/docs/contrib/compiler.rst).
 
 ![Compilation](static/images/compilation.png)
 
+### Compilation differences with the JVM
+
+The initial description of Scala native says that is an
+
+> Optimizing ahead-of-time compiler
+
+What this means is that the code is optimized and compiled directly to "machine code". 
+
+This represents a significant difference with the way that code runs inside the JVM. The code in
+the JVM (Bytecode) is initially interpreted. This process is slower than running machine code
+directly and this is what explains the JVMs slow startup time. 
+
+However that doesn't mean that code is intrinsically slower than native code because
+the JVM has a JIT (Just In Time) compiler that identifies portions of code that run frequently,
+optimizes them and then converts them to machine code instructions what makes the JVM not
+slow for short running processes (because of this warmup time) but quite competitive in overall
+performance once the JIT compilation kicks in.
+
+
+### Sharing libraries
+
+Regular scala libraries built for the JVM cannot be used in a scala native 
+project. To be able to use a scala library inside a scala native project
+it needs to be published with its NIR representation.
+
+Publishin a scala native project with its NIR files is as simple as publishing
+a normal project, it requires the project to be defined as a scala native project
+with `enablePlugins(scalaNativePlugin)` and then to run *publish*.
+
+[sbt-crossproject](https://github.com/portable-scala/sbt-crossproject) is a plugin that
+provides cross compilation support for scala projects (for the JVM, Js and Native).
+
+See a list of scala libraries built for native at:
+
+  - [Scaladex - Native](https://index.scala-lang.org/search?q=*&targetTypes=Native)
+  - [awesome-scala-native](https://github.com/tindzk/awesome-scala-native)
 
 ## Runtime
 
@@ -66,6 +107,32 @@ To overcome the limitation of the missing classes of Java's Standard library,
 Scala native provides it's own implementation of a 
 [subset](http://www.scala-native.org/en/v0.3.9-docs/lib/javalib.html) of the 
 JDK core libraries.
+
+### Memory allocation Differences with the JVM
+
+In terms of memory the JVM makes by default the decission of abstracting the
+developer from having to think about memory allocation and even forbids
+the programming into those details to provide safety, leaving allocating
+and free memory to the runtime. More concretely the garbage collector is a
+process that run inside the JVM and takes care of freeing unused references.
+
+This paradigm that works well in many cases has its limitations, for example:
+
+1. Memory heavy processes can have long stops when the garbage collector kicks in
+2. Programmers of really performant frameworks that need more flexibility 
+regarding memory allocation sometimes need to step out of the garbage collector
+using *unsafe* or other types of  tricks to be able to provide high performance. 
+
+Scala Native follows a different approach stepping out of the "golden cage" provided
+by the JVM to allow manual memory allocation. This approach leaves the door open for
+high performance code but comes with the disadvantage that the programmer needs to be
+careful about how he uses memory.
+
+### Memory allocation Scala Native alternatives
+
+Even though Scala native provides freedom regarding memory allocation it also allows
+the possibility to rely on garbage collectors to free the developer from the burden of
+thinking about memory if desired.
 
 Regarding Garbage collection Scala Native let you choose between the inmix and the 
 boehm garbage collectors and not using any garbage collector. Here's the description
